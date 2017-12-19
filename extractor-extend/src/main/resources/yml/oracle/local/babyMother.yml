@@ -1,0 +1,27 @@
+source: jdbc
+config:
+   #url: jdbc:oracle:thin://@10.95.18.3:1521/smjk2013
+    url: jdbc:oracle:thin:@192.168.0.91:1521:xmhealth
+    #username: zystandard
+    username: caitest
+    #password: Zystandard@2017
+    password: caitest
+    lowerBound: 1
+    upperBound: 30000
+    numPartitions: 2
+    query: select *
+             from (select rownum row_num,
+                          t1.org_code,
+                          t1.patient_id,
+                          t1.gest_dtime,
+                          t1.gest_result,
+                          t2.card_no,
+                          t2.id_no
+                     from woman_birthrecord t1
+                     left join cehr_patient t2
+                       on t1.patient_id = t2.patient_id
+                      and t1.org_code = t2.org_code
+                    where id_no is not null)
+            where ? <= row_num
+              and row_num <= ?
+

@@ -1,0 +1,59 @@
+#XML输入结点
+input:
+    include: #过滤字段
+        - code: VERSION
+          value: 2.0.0.0
+        - code: CATALOG_CODE
+          value: 0141,0241
+    only-last-version: true
+    family: i #列族
+    fields:
+        - column: XML
+          codec: xml
+          extracts:
+            - xpath: //component//section//entry//group//startDate
+              alias: startDate
+              #collection: array
+            - xpath: //component//section//entry//group//medicine//value/@code
+              alias: code
+              #collection: array
+            - xpath: //component//section//entry//group//medicine//value
+              alias: name
+              #collection: array
+            - xpath: //component//section//entry//group//medicine//custome/@code
+              alias: customeCode
+              #collection: array
+            - xpath: //component//section//entry//group//medicine//custome
+              alias: customeName
+              #collection: array
+        - column: XMAN_ID
+          type: string
+          alias: xmanId
+        - column: EVENT
+          type: string
+          alias: event
+        - column: CATALOG_CODE
+          type: string
+          alias: catalogCode
+        - column: SERIAL
+          type: string
+          alias: serial
+##
+#输出HBase表的schema
+output: "{
+          \"table\":{\"namespace\":\"antin\", \"name\":\"sehr_xman_ehr_guide\"},
+          \"rowkey\":\"_key\",
+          \"columns\": {
+          \"_key\":{\"cf\":\"rowkey\", \"col\":\"_key\",\"type\":\"string\"},
+          \"xmanId\":{\"cf\":\"p\", \"col\":\"XMAN_ID\", \"type\": \"string\"},
+          \"event\":{\"cf\":\"p\", \"col\":\"EVENT\", \"type\": \"string\"},
+          \"catalogCode\":{\"cf\":\"p\", \"col\":\"CATALOG_CODE\", \"type\": \"string\"},
+          \"serial\":{\"cf\":\"p\", \"col\":\"SERIAL\", \"type\": \"string\"},
+          \"startDate\":{\"cf\":\"p\", \"col\":\"START_DATE\", \"type\": \"string\"},
+          \"code\":{\"cf\":\"p\", \"col\":\"CODE\", \"type\": \"string\"},
+          \"name\":{\"cf\":\"p\", \"col\":\"NAME\", \"type\": \"string\"},
+          \"customeCode\":{\"cf\":\"p\", \"col\":\"CUSTOME_CODE\", \"type\": \"string\"},
+          \"customeName\":{\"cf\":\"p\", \"col\":\"CUSTOME_NAME\", \"type\": \"string\"}
+        }
+        }"
+      

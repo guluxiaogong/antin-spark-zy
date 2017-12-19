@@ -1,0 +1,51 @@
+table: test:sehr_xman_ehr_0213
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        hbase.zookeeper.quorum: hadoop-001,hadoop-002,hadoop-003
+        zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: test:sehr_xman_ehr_0213
+        hbase.mapreduce.scan.column.family: i
+only-last-version: true
+family: i
+fields:
+    - column: XMAN_ID
+      type: string
+      alias: xmanId
+    - column: EVENT
+      type: string
+      alias: event
+    - column: CATALOG_CODE
+      type: string
+      alias: catalogCode
+    - column: SERIAL
+      type: string
+      alias: serial
+    - column: CONTENT
+      type: string
+      alias: content
+    - column: XML
+      type: string
+      alias: xml
+    - column: COMPRESSION
+      type: string
+      alias: compression
+    - column: ENCRYPTION
+      type: string
+      alias: encryption
+    - column: STATUS
+      type: string
+      alias: status
+    - column: VERSION
+      type: string
+      alias: version
+    - column: TITLE
+      type: string
+      alias: title
+    - column: COMMIT_TIME
+      type: string
+      alias: commitTime
+    - column: ISTEMP
+      type: string
+      alias: istemp

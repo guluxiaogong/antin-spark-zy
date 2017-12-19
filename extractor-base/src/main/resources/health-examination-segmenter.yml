@@ -1,0 +1,17 @@
+table: SEHR_XMAN_EHR
+source: hbase
+config:
+    file: /usr/hdp/2.6.1.0-129/hbase/conf/hbase-site.xml
+    properties:
+        hbase.zookeeper.quorum: hadoop-004,hadoop-002,hadoop-003
+        zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: SEHR_XMAN_EHR
+        hbase.mapreduce.scan.column.family: i
+family: i
+fields:
+    - column: XML
+      codec: xml
+      extracts:
+        - xpath: //component//observation/value
+          alias: observation
+          collection: array

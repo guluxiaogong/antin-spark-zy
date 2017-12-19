@@ -1,0 +1,14 @@
+source: hbase
+config:
+    #file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        #hbase.zookeeper.quorum: hadoop-001,hadoop-002,hadoop-003
+        #zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: test:sehr_xman_ehr_small
+        #hbase.mapreduce.scan.column.family: i
+    family: i
+filter:
+       - code: VERSION
+         value: 1.0.0000.0
+       - code: CATALOG_CODE
+         value: 0130,0231

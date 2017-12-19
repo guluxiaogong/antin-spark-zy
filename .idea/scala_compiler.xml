@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <profile name="Maven 1" modules="extractor-base">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="E:\Workspace\Idea\zoe\zoe-spark-smy\antin-spark-zy\extractor-base\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 2" modules="extractor-parser">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="E:\Workspace\Idea\zoe\zoe-spark-smy\antin-spark-zy\extractor-parser\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 3" modules="extractor-parser2">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="E:\Workspace\Idea\zoe\zoe-spark-smy\antin-spark-zy\extractor-parser2\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 4" modules="extractor-extend">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="E:\Workspace\Idea\zoe\zoe-spark-smy\antin-spark-zy\extractor-extend\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 5" modules="antin-recom">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="E:\Workspace\Idea\zoe\zoe-spark-smy\antin-spark-zy\antin-recom\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 6" modules="antin-search">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="E:\Workspace\Idea\zoe\zoe-spark-smy\antin-spark-zy\antin-search\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+  </component>
+</project>

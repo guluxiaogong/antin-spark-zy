@@ -1,0 +1,16 @@
+#table: sehr:sehr_xman_ehr_0121_0221
+table: test:temp_tys_pregnancy_smjkindex
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        #hbase.zookeeper.quorum: hadoop-001,hadoop-002,hadoop-003
+        #zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: test:temp_tys_pregnancy_smjkindex
+        #hbase.mapreduce.inputtable: test:sehr_xman_ehr_small
+        hbase.mapreduce.scan.column.family: i
+family: i
+fields:
+    - column: _key
+      type: string
+      alias: xmanId

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClinicalDocument>
+    <!--固定值-->
+    <version code="2.0.0.0" date="2009-12-01">根据卫生部标准第一次修订</version>
+    <!--固定值。codeSystem是code的编码体系，可以是ISO的对象标识符OID(一组数字)、国家标准(以GB开头)、
+        卫生部健康档案数据标准(以CV开头)、本系统标准(以STD开头)或其它医学标准-->
+    <ehr code="健康类别代码(字典STD_EHR)：固定值0131" codeSystem="STD_EHR">门诊检查报告</ehr>
+    <!--可根据需要自定义报告标题-->
+    <title>门诊检查报告</title>
+    <!--医疗机构编号使用卫生局的标准编码-->
+    <org code="医疗机构编号(字典STD_HEALTH_ORG)" codeSystem="STD_HEALTH_ORG">医疗机构名称</org>
+    <!--报告单号用于唯一标识该文档，并做为与图象关联的编号，事件号用于标识一次诊疗过程，同过程的所有文档事件号相同-->
+    <id extension="报告单号" eventno="事件号"></id>
+    <!--文档创建时间，格式是“yyyy-MM-dd hh24:mi:ss”，
+    以下未特殊说明的“日期”均使用“yyyy-MM-dd”格式，如2009-12-01
+    未特殊说明的“日期时间”均使用“yyyy-MM-dd hh24:mi:ss”格式，如2009-12-01 16:00:00-->
+    <effectiveTime value="文档创建时间"/>
+    <recordTarget>
+        <patient>
+            <id extension="市民健康卡号"></id>
+            <name>姓名</name>
+            <sex code="性别代码(字典STD_SEX)" codeSystem="GB/T 2261.1-2003">性别名称</sex>
+        </patient>
+    </recordTarget>
+    <author>
+        <time>报告生成时间</time>
+        <id extension="报告者：编号"/>
+        <name>报告者：姓名</name>
+    </author>
+    <authenticator>
+        <time>审核时间</time>
+        <id extension="审核者：编号"/>
+        <name>审核者：姓名</name>
+    </authenticator>
+    <participant>
+        <time>申请时间</time>
+        <id extension="申请医生：编号"/>
+        <name>申请医生：姓名</name>
+        <dept>申请科室</dept>
+    </participant>
+    <inFulfillmentOf>
+        <order>
+            <id>对应的医嘱：医嘱号</id>
+            <priority code="优先级代码(字典STD_PRIORITY)" codeSystem="HL7 27">对应的医嘱优先级名称</priority>
+        </order>
+    </inFulfillmentOf>
+    <component>
+        <section>
+            <code code="检查分类的编码" displayName="检查分类的名称" bodyPartCode="检查部位的编码" bodyPartName="检查部位的名称" examCode="检查项目的编码" examName="检查项目的名称"/>
+            <recognition code="可互认标识编码" codesystem="STD_LAB_EXAM_RECOGNITION"/>
+            <entry>
+                <performer>
+                    <assignedEntity>检查的执行科室</assignedEntity>
+                    <name>检查的执行医生</name>
+                    <time>检查的执行时间</time>
+                </performer>
+                <playingDevice>
+                    <name>检查设备名称</name>
+                </playingDevice>
+                <clinicDiagnosis>临床诊断</clinicDiagnosis>
+                <patientCondition>病情描述</patientCondition>
+                <examCause>检查目的</examCause>
+                <description>影像所见</description>
+                <isAbnormal code="N正常、Y异常" codeSystem="">是否异常</isAbnormal>
+            </entry>
+        </section>
+    </component>
+</ClinicalDocument>

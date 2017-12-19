@@ -1,0 +1,144 @@
+  <configuration>
+    
+    <property>
+      <name>fs.defaultFS</name>
+      <value>hdfs://hadoop-cluster</value>
+      <final>true</final>
+    </property>
+    
+    <property>
+      <name>fs.trash.interval</name>
+      <value>360</value>
+    </property>
+    
+    <property>
+      <name>ha.failover-controller.active-standby-elector.zk.op.retries</name>
+      <value>120</value>
+    </property>
+    
+    <property>
+      <name>ha.zookeeper.quorum</name>
+      <value>hadoop-003:2181,hadoop-002:2181,hadoop-001:2181</value>
+    </property>
+    
+    <property>
+      <name>local.http.authentication.simple.anonymous.allowed</name>
+      <value>true</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.ambari.groups</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.ambari.hosts</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.hcat.groups</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.hcat.hosts</name>
+      <value>hadoop-002</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.hdfs.groups</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.hdfs.hosts</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.hive.groups</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.hive.hosts</name>
+      <value>hadoop-002</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.oozie.groups</name>
+      <value>*</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.oozie.hosts</name>
+      <value>hadoop-002</value>
+    </property>
+    
+    <property>
+      <name>local.proxyuser.yarn.hosts</name>
+      <value>hadoop-001,hadoop-002</value>
+    </property>
+    
+    <property>
+      <name>local.security.auth_to_local</name>
+      <value>DEFAULT</value>
+    </property>
+    
+    <property>
+      <name>local.security.authentication</name>
+      <value>simple</value>
+    </property>
+    
+    <property>
+      <name>local.security.authorization</name>
+      <value>false</value>
+    </property>
+    
+    <property>
+      <name>io.compression.codecs</name>
+      <value>org.apache.local.io.compress.GzipCodec,org.apache.local.io.compress.DefaultCodec,org.apache.local.io.compress.SnappyCodec</value>
+    </property>
+    
+    <property>
+      <name>io.file.buffer.size</name>
+      <value>131072</value>
+    </property>
+    
+    <property>
+      <name>io.serializations</name>
+      <value>org.apache.local.io.serializer.WritableSerialization</value>
+    </property>
+    
+    <property>
+      <name>ipc.client.connect.max.retries</name>
+      <value>50</value>
+    </property>
+    
+    <property>
+      <name>ipc.client.connection.maxidletime</name>
+      <value>30000</value>
+    </property>
+    
+    <property>
+      <name>ipc.client.idlethreshold</name>
+      <value>8000</value>
+    </property>
+    
+    <property>
+      <name>ipc.server.tcpnodelay</name>
+      <value>true</value>
+    </property>
+    
+    <property>
+      <name>mapreduce.jobtracker.webinterface.trusted</name>
+      <value>false</value>
+    </property>
+    
+    <property>
+      <name>net.topology.script.file.name</name>
+      <value>/etc/hadoop/conf/topology_script.py</value>
+    </property>
+    
+  </configuration>

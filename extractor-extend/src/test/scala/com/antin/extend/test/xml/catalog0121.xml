@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClinicalDocument>
+    <!--固定值-->
+    <version code="2.0.0.0" date="2009-12-01">根据卫生部标准第一次修订</version>
+    <!--固定值。codeSystem是code的编码体系，可以是ISO的对象标识符OID(一组数字)、国家标准(以GB开头)、
+        卫生部健康档案数据标准(以CV开头)、本系统标准(以STD开头)或其它医学标准-->
+    <ehr code="健康类别代码(字典STD_EHR)：固定值0121" codeSystem="STD_EHR">门诊检验报告</ehr>
+    <!--可根据需要自定义报告标题-->
+    <title>门诊检验报告</title>
+    <!--医疗机构编号使用卫生局的标准编码-->
+    <org code="医疗机构编号(字典STD_HEALTH_ORG)" codeSystem="STD_HEALTH_ORG">医疗机构名称</org>
+    <!--报告单号用于唯一标识该文档，事件号用于标识一次诊疗过程，同过程的所有文档事件号相同-->
+    <id extension="检验报告单号" eventno="事件号"></id>
+    <!--文档创建时间，格式是“yyyy-MM-dd hh24:mi:ss”，
+    以下未特殊说明的“日期”均使用“yyyy-MM-dd”格式，如2009-12-01
+    未特殊说明的“日期时间”均使用“yyyy-MM-dd hh24:mi:ss”格式，如2009-12-01 16:00:00-->
+    <effectiveTime value="文档创建时间"/>
+    <recordTarget>
+        <patient>
+            <id extension="市民健康卡号"></id>
+            <name>姓名</name>
+            <sex code="性别代码(字典STD_SEX)" codeSystem="GB/T 2261.1-2003">性别名称</sex>
+        </patient>
+    </recordTarget>
+    <author>
+        <time>报告生成时间</time>
+        <id extension="报告者：编号"/>
+        <name>报告者：姓名</name>
+    </author>
+    <authenticator>
+        <time>审核时间</time>
+        <id extension="审核者：编号"/>
+        <name>审核者：姓名</name>
+    </authenticator>
+    <participant>
+        <time>申请时间</time>
+        <id extension="申请医生：编号"/>
+        <name>申请医生：姓名</name>
+        <dept>申请科室</dept>
+    </participant>
+    <inFulfillmentOf>
+        <order>
+            <id>对应的医嘱：医嘱号</id>
+            <priority code="优先级代码(字典STD_PRIORITY)" codeSystem="HL7 27">对应的医嘱优先级名称</priority>
+        </order>
+    </inFulfillmentOf>
+    <component>
+        <section>
+            <code code="检验的专业类型编码(字典STD_LAB_EXAM_TYPE)" codeSystem="2.16.840.1.113883.6.1" displayName="检验的专业类型名称"/>
+            <entry>
+                <id>标本编号</id>
+                <performer>
+                    <assignedEntity>检验的执行科室</assignedEntity>
+                    <name>检验的执行医生</name>
+                    <time>检验的执行时间</time>
+                </performer>
+                <classCode>标本类型</classCode>
+                <specimenDeterminer code="标本采集部位代码(字典STD_SPECIMEN_DETERMINER)" codeSystem="HL7 0163">标本采集部位名称
+                </specimenDeterminer>
+                <risk code="标本危险程度代码(字典STD_SPECIMEN_RISK)" codeSystem="HL7 0489">标本危险程度名称</risk>
+                <quantity code="标本质量代码(字典STD_ SPECIMEN_QUANTITY)" codeSystem="HL7 0491">标本质量名称</quantity>
+                <rejectReason code="标本拒绝原因代码(字典STD_ SPECIMEN_REJECT_REASON)" codeSystem="HL7 0490">标本拒绝原因名称
+                </rejectReason>
+                <playingDevice>
+                    <name>检验设备名称</name>
+                </playingDevice>
+                <!--检验子项：开始(多项时重复此节点)-->
+                <observation>
+                    <code code="子项的LOINC编码" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+                          displayName="子项的LOINC名称"/>
+                    <recognition code="可互认标识编码" codesystem="STD_LAB_EXAM_RECOGNITION"/>
+                    <type code="结果类型代码(字典STD_OBSERVATION_TYPE)" codeSystem="STD_OBSERVATION_TYPE">结果类型名称</type>
+                    <value>结果值</value>
+                    <unit>单位</unit>
+                    <referenceRange>
+                        <observationRange>
+                            <notes>参考值备注</notes>
+                            <low>
+                                <value>参考值下限</value>
+                                <unit>单位</unit>
+                            </low>
+                            <high>
+                                <value>参考值上限</value>
+                                <unit>单位</unit>
+                            </high>
+                        </observationRange>
+                    </referenceRange>
+                    <effectiveTime>该项的创建时间</effectiveTime>
+                    <interpretationCode code="观测结果解释代码(字典STD_OBSERVATION_INTERPRET)"
+                                        codeSystem="2.16.840.1.113883.5.83">结果解析名称
+                    </interpretationCode>
+                </observation>
+                <!--检验子项：结束-->
+            </entry>
+        </section>
+    </component>
+</ClinicalDocument>

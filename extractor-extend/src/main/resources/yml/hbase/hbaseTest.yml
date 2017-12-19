@@ -1,0 +1,29 @@
+table: sehr_xman_ehr
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        hbase.zookeeper.quorum: hadoop-004,hadoop-002,hadoop-003
+        zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: sehr_xman_ehr
+        hbase.mapreduce.scan.column.family: info
+only-last-version: true
+family: info
+fields:
+    - column: XML
+      codec: xml
+      extracts:
+        - xpath: /ClinicalDocument/version
+          alias: version
+        - xpath: /ClinicalDocument/org/@codeSystem
+          alias: codeSystem
+        - xpath: //quantity
+          type: float
+          alias: quantity
+      alias: new name
+    - column: ID
+      type: string
+      alias: id
+    - column: TITLE
+      type: string
+      alias: title

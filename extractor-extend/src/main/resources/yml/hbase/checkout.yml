@@ -1,0 +1,40 @@
+table: sehr:sehr_xman_ehr_0121_0221
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        hbase.zookeeper.quorum: hadoop-001,hadoop-002,hadoop-003
+        zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: sehr:sehr_xman_ehr_0121_0221
+        hbase.mapreduce.scan.column.family: i
+family: i
+fields:
+    - column: XML
+      codec: xml
+      extracts:
+        - xpath: //ClinicalDocument//org //@code
+          alias: orgCode
+        - xpath: //component//section//entry/classCode
+          alias: classCode
+        - xpath: //component//section//code/@code
+          alias: code
+        - xpath: //component//section//entry//observation//code/@code
+          alias: subCode
+          collection: array
+        - xpath: //component//section//entry//observation//code/@displayName
+          alias: subName
+          collection: array
+        - xpath: //component//section//entry//performer/time
+          alias: time
+    - column: XMAN_ID
+      type: string
+      alias: xmanId
+    - column: EVENT
+      type: string
+      alias: event
+    - column: CATALOG_CODE
+      type: string
+      alias: catalogCode
+    - column: SERIAL
+      type: string
+      alias: serial

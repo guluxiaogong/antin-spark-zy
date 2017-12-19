@@ -1,0 +1,9 @@
+source: jdbc
+config:
+    url: jdbc:oracle:thin://@10.95.18.3:1521/smjk2013
+    username: zystandard
+    password: Zystandard@2017
+    lowerBound: 1
+    upperBound: 1000000000
+    numPartitions: 8
+    query: select * from (select rownum row_num,outpat_diag_name,outpat_diag_code from OutPatient_Diag) where ? <= row_num and row_num <= ?

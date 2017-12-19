@@ -1,0 +1,14 @@
+table: sehr:sehr_xman
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        #hbase.zookeeper.quorum: hadoop-001,hadoop-002,hadoop-003
+        #zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: sehr:sehr_xman
+        hbase.mapreduce.scan.column.family: i
+family: i
+fields:
+    - column: ID_NO
+      type: string
+      alias: idNo

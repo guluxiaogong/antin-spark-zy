@@ -1,0 +1,11 @@
+source: jdbc
+config:
+    url: jdbc:oracle:thin:@//10.95.100.1:1521/smjk
+    #url: jdbc:oracle:thin:@192.168.0.91:1521:xmhealth
+    username: sehr
+    password: Ipp@sscrypt2017
+    #password: sehr
+    lowerBound: 1
+    upperBound: 1000000
+    numPartitions: 2
+    query: select * from (select rownum row_num,t.* from sehr_chronic_register_rpt t) where ? <= row_num and row_num <= ?

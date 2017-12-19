@@ -1,0 +1,23 @@
+table: hpor:woman_prefirstvisit
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        hbase.zookeeper.quorum: hadoop-001,hadoop-002,hadoop-003
+        zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: hpor:woman_prefirstvisit
+        hbase.mapreduce.scan.column.family: i
+family: i
+fields:
+    - column: PATIENT_ID
+      alias: patientId
+    - column: LAST_UPDATE_DTIME
+      type: string
+      alias: lastUpdateDtime
+    - column: GEST_WEEKS
+      type: int
+      alias: gestWeeks
+    - column: EXPECTED_CHILDBIRTH_DATE
+      type: string
+      alias: expectedChildbirthDate
+

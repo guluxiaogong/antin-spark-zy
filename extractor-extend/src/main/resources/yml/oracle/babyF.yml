@@ -1,0 +1,19 @@
+source: jdbc
+config:
+    url: jdbc:oracle:thin:@//10.95.100.2:1521/smjk
+    #url: jdbc:oracle:thin:@192.168.0.91:1521:xmhealth
+    username: sehr
+    password: Ipp@sscrypt2017
+    #password: sehr
+    lowerBound: 0
+    upperBound: 1000000
+    numPartitions: 2
+    query: select *
+             from (select rownum row_num, birth_time, mother_id_no, father_id_no,xman_id
+                     from etl_xman_birthcertificate
+                    where father_id_no is not null
+                      and xman_id is not null)
+            where ? <= row_num
+              and row_num <= ?
+
+

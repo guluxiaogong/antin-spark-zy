@@ -1,0 +1,26 @@
+table: hpor:sehr_chronic_register_rpt
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        hbase.zookeeper.quorum: hadoop-001,hadoop-002,hadoop-003
+        zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: hpor:sehr_chronic_register_rpt
+        hbase.mapreduce.scan.column.family: i
+family: i
+fields:
+    - column: XMAN_ID
+      type: string
+      alias: xmanId
+    - column: CATEGORY
+      type: string
+      alias: category
+    - column: REGISTRATION_DATE
+      type: string
+      alias: registrationDate
+    - column: LASTTIME
+      type: string
+      alias: lasttime
+    - column: ID_NO
+      type: string
+      alias: idNo

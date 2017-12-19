@@ -1,0 +1,23 @@
+table: hpor:woman_gestation_info
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        hbase.zookeeper.quorum: hadoop-001,hadoop-002,hadoop-003
+        zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: hpor:woman_gestation_info
+        hbase.mapreduce.scan.column.family: i
+family: i
+fields:
+    - column: GESTATION_TIME
+      alias: gestationTime
+    - column: LAST_UPDATE_DTIME
+      type: string
+      alias: lastUpdateDtime
+    - column: MOTHER_ID_NO
+      type: string
+      alias: motherIdNo
+    - column: FATHER_ID_NO
+      type: string
+      alias: fatherIdNo
+

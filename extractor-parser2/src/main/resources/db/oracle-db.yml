@@ -1,0 +1,10 @@
+source: jdbc
+config:
+    url: jdbc:oracle:thin:@192.168.0.91:1521:xmhealth
+    username: sehr
+    password: sehr
+    lowerBound: 1
+    upperBound: 189583
+    numPartitions: 2
+    #query: select * from (select rownum row_num,t.* from TEST t) where ? <= row_num and row_num <= ?
+    query: select * from (select rownum row_num,t1.id,t1.id_no from sehr_xman t1) where ? <= row_num and row_num <= ?

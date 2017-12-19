@@ -1,0 +1,57 @@
+#table: sehr:sehr_xman_ehr
+#table: test:sehr_xman_ehr_small
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        #hbase.zookeeper.quorum: hadoop-001,hadoop-002,hadoop-003
+        #zookeeper.znode.parent: /hbase-unsecure
+        #hbase.mapreduce.inputtable: sehr:sehr_xman_ehr
+        hbase.mapreduce.inputtable: test:sehr_xman_ehr_small
+        hbase.mapreduce.scan.column.family: i
+family: i
+fields:
+    - column: XML
+      codec: xml
+      extracts:
+        - xpath: //ClinicalDocument//org //@code
+          alias: orgCode
+        - xpath: //ClinicalDocument/title
+          alias: title
+        - xpath: //ClinicalDocument//component//section//code//@code
+          alias: code
+        - xpath: //ClinicalDocument//component//section//entry//classCode
+          alias: classCode
+        - xpath: //ClinicalDocument//component//section//entry//observation//code/@code
+          alias: observationCode
+          collection: array
+        - xpath: //ClinicalDocument//component//section//entry//observation//code/@displayName
+          alias: observationDisplayName
+          collection: array
+        - xpath: //ClinicalDocument//component//section//entry//observation/value
+          alias: observationValue
+          collection: array
+        - xpath: //ClinicalDocument//component//section//entry//observation/unit
+          alias: observationUnit
+          collection: array
+        - xpath: //ClinicalDocument//component//section//entry//observation//referenceRange//observationRange/notes
+          alias: observationNotes
+          collection: array
+        - xpath: //ClinicalDocument//component//section//entry//observation/interpretationCode
+          alias: observationInterpretationCode
+          collection: array
+    - column: XMAN_ID
+      type: string
+      alias: xmanId
+    - column: EVENT
+      type: string
+      alias: event
+    - column: CATALOG_CODE
+      type: string
+      alias: catalogCode
+    - column: SERIAL
+      type: string
+      alias: serial
+    - column: COMMIT_TIME
+      type: string
+      alias: commitTime

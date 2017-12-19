@@ -1,0 +1,25 @@
+table: sehr:sehr_xman_ehr
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        #hbase.zookeeper.quorum: hadoop-001,hadoop-002,hadoop-003
+        #zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: sehr:sehr_xman_ehr
+        #hbase.mapreduce.inputtable: test:sehr_xman_ehr_middle
+        hbase.mapreduce.scan.column.family: i
+family: i
+fields:
+    - column: XMAN_ID
+      type: string
+      alias: xmanid
+    - column: XML
+      codec: xml
+      extracts:
+        - xpath: //ClinicalDocument//recordTarget//patient/birthDate
+          alias: birthDate
+
+
+
+
+

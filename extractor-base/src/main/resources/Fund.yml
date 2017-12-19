@@ -1,0 +1,21 @@
+table: SEHR_XMAN_EHR
+source: hbase
+config:
+    file: /etc/hbase/conf/hbase-site.xml
+    properties:
+        hbase.zookeeper.quorum: hadoop-004,hadoop-002,hadoop-003
+        zookeeper.znode.parent: /hbase-unsecure
+        hbase.mapreduce.inputtable: SEHR_XMAN_EHR
+        hbase.mapreduce.scan.column.family: i
+only-last-version: true
+family: i
+fields:
+    - column: XML
+      codec: xml
+      extracts:
+        - xpath: //payway/@code
+          alias: codes
+          collection: array
+    - column: XMAN_ID
+      type: string
+      alias: xmanid

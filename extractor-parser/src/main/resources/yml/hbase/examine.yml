@@ -1,0 +1,49 @@
+#XML输入结点
+input:
+    include: #过滤字段
+        - code: VERSION
+          value: 1.0.0000.0
+        - code: CATALOG_CODE
+          value: 0130,0231
+    only-last-version: true
+    family: i #列族
+    fields:
+        - column: XML
+          codec: xml
+          extracts:
+            - xpath: //component//section//code/@displayName
+              alias: displayName
+            - xpath: //component//section//code/@code
+              alias: code
+            - xpath: //component//section//code/@examCode
+              alias: examCode
+        - column: XMAN_ID
+          type: string
+          alias: xmanId
+        - column: EVENT
+          type: string
+          alias: event
+        - column: CATALOG_CODE
+          type: string
+          alias: catalogCode
+        - column: SERIAL
+          type: string
+          alias: serial
+##
+#输出HBase表的schema
+output: "{
+        \"table\":{\"namespace\":\"jcj\", \"name\":\"sehr_xman_ehr_guide\"},
+        \"rowkey\":\"_key\",
+        \"columns\": {
+        \"_key\":{\"cf\":\"rowkey\", \"col\":\"_key\",\"type\":\"string\"},
+        \"xmanId\":{\"cf\":\"e\", \"col\":\"XMAN_ID\", \"type\": \"string\"},
+        \"event\":{\"cf\":\"e\", \"col\":\"EVENT\", \"type\": \"string\"},
+        \"catalogCode\":{\"cf\":\"e\", \"col\":\"CATALOG_CODE\", \"type\": \"string\"},
+        \"serial\":{\"cf\":\"e\", \"col\":\"SERIAL\", \"type\": \"string\"},
+        \"displayName\":{\"cf\":\"e\", \"col\":\"DISPLAY_NAME\", \"type\": \"string\"},
+        \"code\":{\"cf\":\"e\", \"col\":\"CODE\", \"type\": \"string\"},
+        \"examCode\":{\"cf\":\"e\", \"col\":\"EXAM_CODE\", \"type\": \"string\"},
+        \"eCode\":{\"cf\":\"e\", \"col\":\"E_CODE\", \"type\": \"string\"},
+        \"eName\":{\"cf\":\"e\", \"col\":\"E_NAME\", \"type\": \"string\"}
+        }
+        }"

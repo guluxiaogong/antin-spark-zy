@@ -1,0 +1,30 @@
+source: jdbc
+config:
+   #url: jdbc:oracle:thin://@10.95.18.3:1521/smjk2013
+    url: jdbc:oracle:thin:@192.168.0.91:1521:xmhealth
+   #username: zystandard
+    username: caitest
+   #password: Zystandard@2017
+    password: caitest
+    lowerBound: 1
+    upperBound: 500000
+    numPartitions: 2
+    query: select *
+             from (select rownum row_num,
+                          t1.patient_id,
+                          t1.last_update_dtime update_dtime1,
+                          t1.last_update_dtime - t1.gest_weeks * 7 start_time,
+                          t1.expected_childbirth_date,
+                          t2.gestation_time,
+                          t2.last_update_dtime update_dtime2,
+                          t2.mother_id_no,
+                          t2.father_id_no
+                     from woman_prefirstvisit t1
+                     left join woman_gestation_info t2
+                       on t1.patient_id = t2.patient_id
+                    order by t1.last_update_dtime, t2.last_update_dtime)
+            where ? <= row_num
+              and row_num <= ?
+
+
+

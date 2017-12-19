@@ -1,0 +1,4 @@
+source: hbase
+config:
+    hbase.mapreduce.inputtable: test:sehr_xman_ehr_small
+    hbase.mapreduce.scan.column.family: i
